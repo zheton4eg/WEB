@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <title>Java script</title>
+</head>
+<body>
+    <h1>Java script</h1>
+    cmd, Bash, 
+    Windows, Linux/UNIX, MacOs,
+    Android....
+    <hr>
+    <input type="number" name="base" id="base" onchange="Power()"/>
+    <input type="number" name="exponent" id="exponent"/>
+    <pre>
+    <script>
+        //var name = prompt("Введите Ваше имя:");
+        //alert("Hello" + name + "!");
+        //alert(`hello ${name}!`);
+        var value = prompt(`${name}, введите число для вычисления Факториала`)
+        document.write(`<h2>${name}, Вы ввели значение ${value}</h2>`);
+        document.writeln(typeof (value));
+        let n = Number(value);
+        document.writeln(typeof (n));
+        //alert("Hello");
+        let f = 1n;
+        for (let i = 1n; i <= n; i++)
+        {
+            f *= i;
+            //document.writeln(`${i}!=${f};`)
+        }
+        let resoult = String(f);
+        document.writeln(resoult.length);
+        document.write(`<hr>`);
+        function Power()
+        {
+            alert(`Основание степени ${document.getElementById("base").value}`);
+        }
+       
+    </script>
+</pre>
+</body>
+</html>
