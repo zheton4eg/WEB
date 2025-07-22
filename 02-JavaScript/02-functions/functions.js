@@ -124,5 +124,29 @@ function tickCountdown() {
 
 	console.log(`targetTime timezoneOffset:\t${now.getTimezoneOffset()}`);
 
+	const SECONDS_IN_MINUTE = 60;
+	const SECOND_IN_HOUR = 3600;
+	const SECOND_IN_DAY = 86400;
+	const SECONDS_IN_WEEK = SECONDS_IN_DAY * 7;
+	const DAYS_IN_MONTH = 365.25 / 12;
+	const SECONDS_IN_MONTH = SECOND_IN_DAY * SECONDS_IN_MONTH;
+	const SECONDS_IN_YEAR = SECOND_IN_DAY * 365 + SECONDS_IN_HOUR * 6;
+
+	let time_of_day = timestamp % SECOND_IN_DAY;
+	let hours = Math.floor(time_of_day / SECONDS_IN_HOUR);
+	if (hours > 0) time_of_day = (time_of_day % (hours * SECOND_IN_HOUR))
+
+	let minutes = Math.floor(time_of_day / SECONDS_IN_MINUTE);
+	if (minutes > 0) time_of_day = (time_of_day % (minutes * SECONDS_IN_MINUTE));
+
+	let seconds = time_of_day;
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	document.getElementById("hours-unit").innerHTML = addLeadingZero(hours);
+	document.getElementById("minutes-unit").innerHTML = addLeadingZero(minute);
+	document.getElementById("seconds-unit").innerHTML = addLeadingZero(seconds);
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	setTimeout(tickCountdown, 100);
 }
