@@ -1,0 +1,112 @@
+﻿﻿body {
+}
+
+input, button {
+    font-size: 32px;
+}
+
+input {
+    width: 320px;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#delay {
+    width: 58px;
+    height: 25px;
+}
+
+#switchBackground {
+    width: 32px;
+    height: 32px;
+    margin: 24px;
+    background-size: 31px 31px; /*!!! ЭТО СВОЙСТВО НЕОБХОДИМО ДЛЯ ОТОБРАЖЕНИЯ ФОНОВОЙ КАРТИНКИ !!!*/
+}
+
+img[src='img/sun.png'] {
+    filter: brightness(0) invert(1);
+}
+
+.light {
+    background: #D8D8D8;
+    color: #323232;
+}
+
+    .light #switchBackground {
+        width: 32px;
+        height: 32px;
+        /*content: url('img/moon.png');*/
+        background-image: url("img/moon.png"); /*ДЛЯ ТОГО ЧТОБЫ ЭТО СВОЙСТВО ЗАРАБОТАЛО, В #SWITCHBACKGROUND НУЖНО ДОБАВИТЬ СВОЙСТВО 'BACKGROUND-SIZE'*/
+    }
+
+.dark {
+    background: #323232;
+    color: #D8D8D8;
+}
+
+    .dark #switchBackground {
+        width: 32px;
+        height: 32px;
+        /*content: url('img/sun.png');*/
+        background-image: url("img/sun.png");
+        filter: brightness(0) invert(1);
+    }
+
+#photo-container {
+    border: solid 1px;
+    width: 400px;
+    height: 300px;
+}
+
+#clock {
+    text-align: center;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+    #clock h3 {
+        margin: 10px;
+    }
+
+input[type=checkbox] {
+    width: 24px;
+    height: 24px;
+}
+
+#display {
+    border: solid 1px;
+    font-size: 32px;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    padding: 10px;
+}
+
+.time-block {
+    border: solid 3px;
+    border-radius: 10px;
+}
+
+.time-unit {
+    font-size: 48px;
+    color: rgb(200,0,0);
+    width: 148px;
+    height: 148px;
+    background-color: Highlight;
+}
+
+.time-marker {
+    border: solid 1px;
+    background-color: darkred;
+    color: aliceblue;
+}
+
+.time-unit, .time-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
