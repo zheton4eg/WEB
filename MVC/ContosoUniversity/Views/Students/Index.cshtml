@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h1>Students</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<!-- Форма поиска -->
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: 
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary" /> 
+            <a asp-action="Index" class="btn btn-secondary">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    Last Name
+                    @if (ViewData["NameSortParam"]?.ToString() == "name_desc")
+                    {
+                        <span>▼</span>
+                    }
+                    else
+                    {
+                        <span>▲</span>
+                    }
+                </a>
+            </th>
+            <th>First Name</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    Enrollment Date
+                    @if (ViewData["DateSortParam"]?.ToString() == "date_desc")
+                    {
+                        <span>▼</span>
+                    }
+                    else if (ViewData["DateSortParam"]?.ToString() == "date")
+                    {
+                        <span>▲</span>
+                    }
+                    else
+                    {
+                        <span>↕️</span>
+                    }
+                </a>
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No students found.
+    </div>
+}
