@@ -27,14 +27,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Создаём базу данных при запуске (без миграций)
+// Создаём базу данных при запуске
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
         var context = services.GetRequiredService<UniversityContext>();
-        context.Database.EnsureCreated(); // Автоматически создаст базу и таблицы
+        Console.WriteLine("Пытаемся создать базу данных...");
+        context.Database.EnsureCreated();
         Console.WriteLine("База данных создана успешно!");
     }
     catch (Exception ex)
