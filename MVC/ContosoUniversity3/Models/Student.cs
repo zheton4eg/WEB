@@ -5,7 +5,7 @@ namespace ContosoUniversity3.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         public string LastName { get; set; }    
         public string FirstName { get; set; }    
         public  DateTime EnrollmentDate { get; set; } //ДатаРегистрации

@@ -8,7 +8,7 @@ namespace ContosoUniversity3.Models
         public int CourseId { get; set; }
         public string Title { get; set; } //Заголовок
         public int Credits { get; set; } //Баллы
-                                        
+
         //Navigation property:
         public ICollection<Enrollment> Enrollments { get; set; }//зачисление
     }
