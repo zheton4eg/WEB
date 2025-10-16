@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity3.Data;
 using ContosoUniversity3.Models;
-using ContosoUniversity;
+using ContosoUniversity3;
 
 namespace ContosoUniversity3.Controllers
 {
@@ -73,7 +73,7 @@ namespace ContosoUniversity3.Controllers
                 .Include(s=>s.Enrollments)
                 .ThenInclude(e=>e.Course)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m=>m.StudentId==id);
+                .FirstOrDefaultAsync(m=>m.ID==id);
 
             if (student == null)
             {
@@ -128,7 +128,7 @@ namespace ContosoUniversity3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StudentId,LastName,FirstName,EnrollmentDate")] Student student)
         {
-            if (id != student.StudentId)
+            if (id != student.ID)
             {
                 return NotFound();
             }
@@ -142,7 +142,7 @@ namespace ContosoUniversity3.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentId))
+                    if (!StudentExists(student.ID))
                     {
                         return NotFound();
                     }
@@ -165,7 +165,7 @@ namespace ContosoUniversity3.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentId == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();
@@ -191,7 +191,7 @@ namespace ContosoUniversity3.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.StudentId == id);
+            return _context.Students.Any(e => e.ID == id);
         }
     }
 }

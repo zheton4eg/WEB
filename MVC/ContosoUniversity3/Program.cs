@@ -1,16 +1,16 @@
 using ContosoUniversity.Data;
 using ContosoUniversity3.Data;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<UniversityContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
+builder
+    .Services
+    .AddDbContext<UniversityContext>
+    (
+        opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
+    );
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -35,18 +35,15 @@ DbInitializer.Initialize(context);
 
 //////////////////////////////////////////////////////////////////////////
 ///
-
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
